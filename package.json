@@ -1,0 +1,19 @@
+{
+  "name": "soybot",
+  "version": "1.0.0",
+  "description": "Discord bot for soylent discord server!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyberpunkprogrammer/soybot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyberpunkprogrammer/soybot/issues"
+  },
+  "homepage": "https://github.com/cyberpunkprogrammer/soybot#readme"
+}
