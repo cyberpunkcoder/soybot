@@ -9,31 +9,15 @@ const fs = require("fs");
 // Create a new discord client
 const client = new Discord.Client();
 
-// When client is ready run this module
-client.once('ready', () => {
-	console.log(`Logged in as ${client.user.tag}!`);
-});
+// Import events
+fs.readdir("./events/", (err, files) => {
+	files.forEach(file => {
+		console.log(`Importing event ${file}`);
 
-client.on("message", message => {
-	if (message.content === "ping") {
-		message.reply("Pong!");  
-	}
-	if (message.content.startsWith("!kick")) {
-	
-		const member = message.mentions.members.first();
-	
-		if (!member) {
-			return message.reply(`Who are you trying to kick? You must mention a user.`);
-		}
-			if (!member.kickable) {
-			return message.reply(`I can't kick this user. Sorry!`);
-		}
-
-		return member
-			.kick()
-			.then(() => message.reply(`${member.user.tag} was kicked.`))
-			.catch(error => message.reply(`Sorry, an error occured.`));
-	}
+		const eventHandler = require(`./events/${file}`);
+		const eventName = file.split(".")[0];
+		client.on(eventName, arg => eventHandler(client, arg));
+	});
 });
 
 // Login to discord bot
