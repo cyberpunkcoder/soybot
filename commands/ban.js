@@ -1,16 +1,20 @@
 module.exports = message => {
 	const member = message.mentions.members.first();
 
-	if (!member) {
-		return message.reply(`Who are you trying to kick? You must mention a user.`);
-	}
-	if (!member.kickable) {
-		return message.reply(`I can't kick this user. Sorry!`);
+	if (message.member.hasPermission("ADMINISTRATOR")) {
+		if (!member) {
+			return message.reply(`Who are you trying to ban? You must mention a user.`);
+		}
+		else if (message.member === member)
+		{
+			return message.reply(`You can't ban yourself!`);
+		}
+		
+		return member
+			.ban()
+			.then(() => message.reply(`${member.user.tag} was banned.`))
+			.catch(error => message.reply(`Sorry, an error occured.`));
 	}
 	
-	return member
-		.kick()
-		.then(() => message.reply(`${member.user.tag} was kicked.`))
-		.catch(error => message.reply(`Sorry, an error occured.`));
+	return message.reply(`You don't have permission to ban members!`)
 };
-
