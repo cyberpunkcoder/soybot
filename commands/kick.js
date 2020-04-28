@@ -1,6 +1,8 @@
 module.exports = message => {
 	const member = message.mentions.members.first();
 
+	message.delete();
+	
 	if (message.member.hasPermission("KICK_MEMBERS")) {
 		if (!member) {
 			return message.reply(`Who are you trying to kick? You must mention a user.`);

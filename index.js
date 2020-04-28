@@ -22,4 +22,3 @@ fs.readdir("./events/", (err, files) => {
 
 // Login to discord bot
 client.login(token);
-
