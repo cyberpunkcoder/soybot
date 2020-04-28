@@ -2,7 +2,7 @@
 const ban = require("../commands/ban");
 const hello = require("../commands/hello");
 const kick = require("../commands/kick");
-const removeall = require("../commands/removeall");
+const purge = require("../commands/purge");
 
 // Handle any commands
 module.exports = (client, message) => {
@@ -15,7 +15,8 @@ module.exports = (client, message) => {
 	else if (message.content.startsWith("!kick")) {
 		return kick(message);
 	}
-	else if (message.content.startsWith("!removeall")) {
-		return removeall(client, message);
+	else if (message.content.startsWith("!purge")) {
+		return purge(client, message);
 	}
+
 };
